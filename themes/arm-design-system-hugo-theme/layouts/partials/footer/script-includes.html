@@ -42,33 +42,33 @@ Called from:
     </script>
     <!-- OneTrust Cookies Consent Notice end for arm.com -->
 {{end}}
-<script src="/js/globalVarsandPreferences.js" defer></script>
-<script src="/js/anonymous-analytics.js" defer></script>          <!-- Include javascript to track custom analytics -->
-<script src="/js/armid-and-navsearch.js" defer></script>  
+<script src='{{ "js/globalVarsandPreferences.js" | absURL }}' defer></script>
+<script src='{{ "js/anonymous-analytics.js" | absURL }}' defer></script>          <!-- Include javascript to track custom analytics -->
+<script src='{{ "js/armid-and-navsearch.js" | absURL }}' defer></script>  
 {{ if not (in .Site.BaseURL "localhost") }}
 <script type="text/javascript" src="https://content.dev.bespin.arm.com/VirtualFAE/learnarm/stage/chat-ai.js" defer></script>
 {{ end }}
-<script src="/vendor/msal-browser.min.js" defer></script> <!-- Authentication -->
-<script src="/js/authentication.js" defer></script> <!-- Authentication -->
+<script src='{{ "vendor/msal-browser.min.js" | absURL }}' defer></script> <!-- Authentication -->
+<script src='{{ "js/authentication.js" | absURL }}' defer></script> <!-- Authentication -->
 
 
 
 
 <!-- Homepage only -->
 {{if .IsHome }}
-    <script src="/js/search-and-filter.js" defer></script>
+    <script src='{{ "js/search-and-filter.js" | absURL }}' defer></script>
 {{end}}
 
 <!-- List pages only -->
 {{if $is_list}}
-    <script src="/js/search-and-filter.js" defer></script>
-    <script src="/js/filter-and-navigate-mobile-behavior.js" defer></script>
+    <script src='{{ "js/search-and-filter.js" | absURL }}' defer></script>
+    <script src='{{ "js/filter-and-navigate-mobile-behavior.js" | absURL }}' defer></script>
 {{end}}
 
 <!-- Content pages only that are not _index, _next-steps, or _review -->
 {{if and $is_content (or (not (hasPrefix .File.TranslationBaseName "_")) (eq .Layout "challengeall"))}}
-    <script src="/js/prism.js" defer></script>                        <!-- Include code highlighting javascript, Prism-->
-    <script src="/js/prism_post_output_formating.js" defer></script>  <!-- must be called after prism.js to modify it once rendered -->
+    <script src='{{ "js/prism.js" | absURL }}' defer></script>                        <!-- Include code highlighting javascript, Prism-->
+    <script src='{{ "js/prism_post_output_formating.js" | absURL }}' defer></script>  <!-- must be called after prism.js to modify it once rendered -->
 {{end}}
 
 <!-- Demo page only -->
@@ -78,12 +78,12 @@ Called from:
 
 <!-- Also add prism to any _demo page that needs it, set as a 'prismjs' variable -->
 {{ if and $is_content (hasPrefix .File.TranslationBaseName "_demo") .Params.prismjs }}
-    <script src="/js/prism.js" defer></script>                        <!-- Include code highlighting javascript, Prism-->
-    <script src="/js/prism_post_output_formating.js" defer></script>  <!-- must be called after prism.js to modify it once rendered -->
+    <script src='{{ "js/prism.js" | absURL }}' defer></script>                        <!-- Include code highlighting javascript, Prism-->
+    <script src='{{ "js/prism_post_output_formating.js" | absURL }}' defer></script>  <!-- must be called after prism.js to modify it once rendered -->
 {{end}}
 {{if $is_content}}
-    <script src="/js/filter-and-navigate-mobile-behavior.js" defer></script> <!-- Always need on content, contains mobile content page nav -->
-    <script src="/js/feedback-form-behavior.js" defer></script>       <!-- Only needed on install guide pages and content pages -->
+    <script src='{{ "js/filter-and-navigate-mobile-behavior.js" | absURL }}' defer></script> <!-- Always need on content, contains mobile content page nav -->
+    <script src='{{ "js/feedback-form-behavior.js" | absURL }}' defer></script>       <!-- Only needed on install guide pages and content pages -->
 {{end}}
 <script>
     (function () {
@@ -125,7 +125,7 @@ Called from:
 {{if .File}}
     {{if .File.TranslationBaseName}}
         {{if hasPrefix .File.TranslationBaseName "_review"}}
-            <script src="/js/review-question-behavior.js" defer></script>       <!-- Only needed on install guide pages and content pages -->
+            <script src='{{ "js/review-question-behavior.js" | absURL }}' defer></script>       <!-- Only needed on install guide pages and content pages -->
         {{end}}
     {{end}}
 {{end}}
