@@ -60,6 +60,7 @@ github_repo = "https://github.com/kieranhejmadi01/DevLabs-Test-Repo"
 github_project_repo = "https://github.com/kieranhejmadi01/DevLabs-Test-Repo"
 # location of assets
 assetsDir = "assets"
+enable_cookie_consent = false
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""

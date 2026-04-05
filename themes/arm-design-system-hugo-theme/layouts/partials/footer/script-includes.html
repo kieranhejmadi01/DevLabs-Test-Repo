@@ -16,7 +16,7 @@ Called from:
 <!-- Feedback is on     _next-steps.md learning path          install tool everything-->
 
 <!-- All pages -->
-{{ if not (in .Site.BaseURL "localhost") }}
+{{ if and (not (in .Site.BaseURL "localhost")) (.Site.Params.enable_cookie_consent | default false) }}
     <!-- OneTrust Cookies Consent Notice start for arm.com -->
     <script
         src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js
