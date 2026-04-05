@@ -1,0 +1,319 @@
+/* Left-hand page navigation
+*******************************************************************/   
+.left-nav-pane {
+    position:sticky;
+    top:5px;
+}
+
+
+ /* Tab color on left */
+ .tab-row {
+    background-color: var(--arm-dark-grey);
+}
+html[theme='dark'] .tab-row {
+    background-color: var(--arm-black); /* rgba(163, 168, 174,1); #2A2B2D; */
+}
+
+.tab-row.active {
+    background-color: var(--arm-light-blue);
+}   
+html[theme='dark'] .tab-row.active {
+    background-color: var(--arm-light-blue);
+}  
+
+
+/* Tab Content on right */
+.tab-right-card {
+    border-style: solid;
+    border-width: 1px;
+    width: 100%;
+    margin-left: 10px;
+
+    border-color: var(--arm-dark-grey);
+    background-color: var(--arm-black);
+}
+
+.tab-right-card.active {
+    border-color: var(--arm-light-blue);
+    background-color: white;
+}
+
+.tab-right-card > h6 {
+    color: white;
+}
+
+.tab-right-card.active > h6 {
+    color: black;
+}
+
+html[theme='dark'] .tab-right-card {
+    border-color: rgba(163, 168, 174,0.25); /* #A3A8AE at 25% transparency */
+    background-color: rgb(23,25,27);  /* CLOSE to this, but hard coded as they are close to background gradient var(--arm-color-base) at 75% transparency */
+}
+html[theme='dark'] .tab-right-card.active {
+    border-color: var(--arm-light-blue);
+}
+
+html[theme='dark'] .tab-right-card > h6 {
+    color: white;
+}
+
+.tab-right-card-header {
+    margin: 10px;
+    font-size:1em;
+}
+
+/* Force a 2-line clamp for masthead title */
+ads-masthead #ads-masthead-title {
+  line-height: 1.2;
+  padding-bottom: 6px;
+  box-sizing: border-box;
+  max-height: calc(1.2em * 2 + 8px); /* dyncamically calculate height depending on length of title */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+}
+
+
+/* hover effects */
+a:hover {
+    text-decoration: none; }
+.tab-row.inactive:hover {
+    background-color:var(--arm-green); }
+.tab-row.inactive:hover .tab-right-card {
+    background-color: var(--arm-color-surface); 
+    border-color: var(--arm-green);
+}
+.tab-row.inactive:hover h6 {
+    color: var(--arm-green); }
+
+
+
+
+/* Github links
+*******************************************************************/   
+.left-hand-icon {
+    width: 15px;
+}
+
+p.github-link        { 
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    color: var(--arm-web-safe-blue);
+    text-decoration: none;
+}
+
+html[theme='dark'] p.github-link        { 
+    color: var(--arm-light-blue);
+}
+html[theme='dark'] p.github-link:hover {
+    color: var(--arm-green);
+}
+
+div.github-div {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    margin-top: 16px;
+
+    border-style: solid;
+    border-width: 1px;
+
+    border-color: var(--arm-dark-grey);
+}
+
+html[theme='dark'] div.github-div {
+    border-color: rgba(163, 168, 174,0.25); /* #A3A8AE at 25% transparency */
+    background-color: rgb(23,25,27);;  /* CLOSE to this, but not due to close to gradient background. var(--arm-color-base) at 75% transparency */
+
+}
+
+
+
+/* Multi-tool page styling (like for docker)
+*******************************************************************/  
+ads-card.multi-install-card {
+    --ads-card-border-radius: 10px;
+    --ads-card-border-width: 1px;
+    --ads-card-border-color: transparent;
+    --ads-card-background-color: var(--arm-light-grey-alt);
+
+    --ads-card-border-color-hover: transparent;
+
+    --ads-card-background-color-hover: var(--arm-light-grey);
+    --ads-card-box-shadow-hover: 0 3px 6px 1px rgba(0,0,0,0.16);  /* 0 1px 3px 3px rgba(0,0,0,0.25); */
+} 
+html[theme='dark'] ads-card.multi-install-card {
+    --ads-card-background-color: var(--arm-color-base);
+    --ads-card-border-color: #000000;
+    /*--ads-card-box-shadow:  0 3px 12px rgba(0, 0, 0, 0.5);*/
+
+    /* hover state */
+    --ads-card-background-color-hover: var(--arm-color-base);
+    --ads-card-border-color-hover: transparent;
+    /*--ads-card-box-shadow-hover:  0 3px 12px rgba(0, 0, 0, 0.5);*/
+
+}
+
+.multi-tool-selection-title {
+    color: var(--arm-web-safe-blue);
+    margin-top: 4px!important;
+    margin-bottom: 4px!important;
+}
+html[theme='dark'] .multi-tool-selection-title {
+    color: var(--arm-light-blue);
+}
+ads-card.multi-install-card:hover .multi-tool-selection-title{
+    transition: color 0.3s ease-in-out;
+    color: var(--arm-green);
+}
+html[theme='dark'] ads-card.multi-install-card:hover .multi-tool-selection-title {
+    transition: color 0.3s ease-in-out;
+    color: var(--arm-green);
+}
+
+
+/* Challenge community attempts
+*******************************************************************/
+.community-attempts-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.community-attempts-logo {
+    width: 28px;
+    height: 28px;
+}
+
+.community-attempt-card-logo {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.community-attempt-card-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.community-attempt-meta,
+.community-attempt-summary {
+    margin-bottom: 0;
+}
+
+.community-attempt-meta {
+    color: #A3A8AE;
+    font-size: 0.9rem !important;
+}
+
+
+
+
+/* Review page styling
+*******************************************************************/   
+.fa-circle-check {color: var(--arm-web-safe-green);}
+.correct-explain {color: var(--arm-web-safe-green);}
+html[theme='dark'] .fa-circle-check {color: var(--arm-green);}
+html[theme='dark'] .correct-explain {color: var(--arm-green);}
+
+
+.fa-times-circle   {color: var(--arm-web-safe-red);}
+.incorrect-explain {color: var(--arm-web-safe-red);}
+html[theme='dark'] .fa-times-circle {color: #e86868} /* 27% lighter than arm's websafe red */
+html[theme='dark'] .incorrect-explain {color: #e86868} /* 27% lighter than arm's websafe red */
+
+
+#error-answer-all-questions-message {
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+#error-answer-all-questions-message.smooth-open {
+    opacity: 1;
+}
+
+
+#push-to-next-steps-div {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-delay: 3s;
+}
+#push-to-next-steps-div.smooth-open {
+    opacity: 1;
+}
+
+.checkbox-icon {
+    opacity: 0;
+    transition: opacity 1s;  
+}
+
+.checkbox-icon.smooth-open {
+    opacity: 1;
+}
+
+.info_text_preexplination {
+    opacity: 0;
+    transition: opacity 1s;  
+}
+
+.info_text_preexplination.smooth-open {
+    opacity: 1;
+}
+
+
+
+
+/* Subtitle (for Next steps styling) */
+/**************************************/
+.next-steps-subtitle {
+    color: var(--arm-black);
+    font-family: "Source Code Pro", monospace;
+    font-weight: lighter;
+    color:  #A3A8AE;
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+.social-icons a {
+    color: var(--arm-light-blue);
+    font-size: 36px;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    color: var(--arm-green);
+}
+
+.share-icon {
+    width: 36px;
+    height: 36px;
+    fill: var(--arm-light-blue);
+    text-decoration: none;
+}
+.share-icon:hover {
+    fill: var(--arm-green);
+    cursor: pointer;
+  }
+#link-copied-success {
+    color: var(--arm-green);
+    background-color: var(--arm-black);
+    border-radius: 10px;
+    padding-left:8px;
+    padding-top: 4px;
+    padding-bottom: 6px;
+    padding-right: 16px;
+    font-size: 16px;
+}

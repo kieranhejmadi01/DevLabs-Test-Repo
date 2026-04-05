@@ -1,0 +1,128 @@
+{{/*
+Contains all information in the head of an html file.
+
+Where it is used:
+    - all, called from baseof
+*/}}
+
+
+<!-- Hugo processing -->
+{{$is_content := or (eq .Layout "learningpathall") (eq .Layout "installtoolsall") (eq .Layout "challengeall")}}
+{{$is_list := and (not $is_content) (.IsNode) (not .IsHome) }}  
+
+    <!-- assign title of page -->
+{{ $title := print .Title " | " .Site.Title  }}
+{{ if .IsHome }}
+    {{ $title = print "Home | " .Site.Title }}
+{{ end }}
+
+
+<!-- All pages -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Set the viewport appropriatly -->
+    <!-- verify site ownership for Google -->
+<meta name="google-site-verification" content="BTfVb1OscFD-pN_bYZaTGmfx2_K3S1EbzvdKPepntvk" />
+    <!-- add cannonical link to reinforce this page's validity for search engines, with a trailing / on the URL name-->
+<link rel="canonical" href="{{ .Permalink }}" />
+<title>{{ $title }}</title>
+
+{{/* Meta description */}}
+{{- $d := .Params.description
+    | default ""
+    | plainify
+    | replaceRE `(?s)^\s+|\s+$` ""
+    | htmlEscape
+-}}
+{{- if gt (len $d) 0 -}}
+<meta name="description" content="{{ $d }}">
+{{- end -}}
+
+{{ partial "head/jsonld.html" . }}
+
+<!-- Include the Arm standard Lato font for machines that don't have by default (Mac) -->
+<!-- Can be done automatically now in cross-page.css locally to speed up process -->
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link rel="preload" href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" as="style" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400&display=swap" crossorigin="anonymous" />
+
+
+    <!-- ADS Imports -->
+<link rel="stylesheet" href="https://cdn.designsystem.arm.com/rel/4.9.0/arm-design-system.css" integrity="sha384-TIxVkbw6g/OlN2t0XSUGTik6Kc0pkpNEcm1bOAGO02jsHholeZipXigdXRDYqCGr" crossorigin="anonymous">
+<script type="module" src="https://cdn.designsystem.arm.com/rel/4.9.0/arm-design-system/arm-design-system.esm.js" integrity="sha384-K+IGYCWaqyh5adrYnimAXzUamdfAwRYJGwwrybHfAhmsehOIcexAPoEoEyLRJwkC" crossorigin="anonymous"></script>
+
+    <!-- Arm Header & Footer loading -->
+<script  type="text/javascript"  src="https://www.arm.com/arm-global-web-components/devhub/app.js" ></script>
+
+
+    
+    <!-- Custom CSS minified -->
+<!-- {{ $css_all_pages := slice (resources.Get "css/cookie.css") (resources.Get "css/cross-page.css") (resources.Get "css/mobile.css") | resources.Concat "css/mini_allpage.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css_all_pages.Permalink }}">
+-->
+
+
+{{$all_page_css := slice (resources.Get "css/cookie.css") (resources.Get "css/cross-page.css") (resources.Get "css/mobile.css")}}
+
+<!-- Homepage only -->
+{{if .IsHome }}
+    {{ $css_home := $all_page_css | append 
+        (resources.Get "css/home.css")
+        | resources.Concat "css/mini_home.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_home.Permalink }}">
+{{end}}
+
+<!-- List pages only -->
+{{if $is_list}}
+    {{ $css_list := $all_page_css | append 
+        (resources.Get "css/list-pages.css") (resources.Get "css/ads-radio-button.css")
+        | resources.Concat "css/mini_list.css" | minify | fingerprint  }}
+        <link rel="stylesheet" href="{{ $css_list.Permalink }}">
+{{end}}
+
+      
+<!-- Content pages -->
+{{if $is_content}}
+    {{ $css_content := $all_page_css | append 
+        (resources.Get "css/content.css") (resources.Get "css/demo.css") (resources.Get "css/feedback.css") (resources.Get "css/context-tables.css") (resources.Get "css/content-pages.css") (resources.Get "css/ads-radio-button.css")
+        | resources.Concat "css/mini_content.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_content.Permalink }}">
+{{end}}
+{{if and $is_content (or (not (hasPrefix .File.TranslationBaseName "_")) (eq .Layout "challengeall"))}}
+    <!-- already minified, and need the ID to change it as appropritate by theme 
+    <link id="prism-code-theme" href="/css/prism-dark.css" rel="stylesheet" media="print" onload="this.media='all'" />
+    <link href="/css/prism-added-styles.css" rel="stylesheet" media="print" onload="this.media='all'" />
+    --> 
+    {{ $css_prism := slice | append (resources.Get "/css/prism-dark.css") (resources.Get "/css/prism-added-styles.css")
+        | resources.Concat "css/mini_prism.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_prism.Permalink }}" media="print" onload="this.media='all'">
+{{end}}
+<!-- Also add prism to any _demo page that needs it, set as a 'prismjs' variable -->
+{{ if and $is_content (hasPrefix .File.TranslationBaseName "_demo") .Params.prismjs }}
+    {{ $css_prism := slice | append (resources.Get "/css/prism-dark.css") (resources.Get "/css/prism-added-styles.css")
+    | resources.Concat "css/mini_prism.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_prism.Permalink }}" media="print" onload="this.media='all'">
+{{end}}
+
+
+<!-- Stats only -->
+{{if eq .Layout "stats_page"}}
+    <!-- Include JS files -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- minify local CSS files -->
+    {{ $css_stats := $all_page_css | append 
+        (resources.Get "css/stats.css")
+        | resources.Concat "css/mini_stats.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_stats.Permalink }}">
+{{end}}
+
+
+<!-- Migration only -->
+{{if eq .Layout "migration"}}
+
+    <!-- minify local CSS files -->
+    {{ $css_migration := $all_page_css | append 
+        (resources.Get "css/content.css") (resources.Get "css/feedback.css") (resources.Get "css/context-tables.css") (resources.Get "css/content-pages.css") (resources.Get "css/ads-radio-button.css")
+        | resources.Concat "css/mini_migration.css" | minify | fingerprint  }}
+    <link rel="stylesheet" href="{{ $css_migration.Permalink }}">
+{{end}}

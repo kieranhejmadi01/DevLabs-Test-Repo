@@ -1,0 +1,97 @@
+{{/*
+A content page that acts as a wrapper for all learning path content, rendering different depending on what type of page it is.
+
+Where it is used:
+    - /learning-paths/:category/:learning-path/:optional-step
+    - /learning-paths/servers-and-cloud-computing/gke/
+
+Called from:
+    - baseof
+
+Calls to:
+    - partial navigation/content-navigation.html
+    - partial general-formatting/github-links.html
+    - partial navigation/content-navigation-mobile.html
+    - partial learning-paths/introduction
+    - partial learning-paths/review
+    - partial learning-paths/next-steps
+    - partial learning-paths/content
+    - partial navigation/nav-buttons
+*/}}
+
+{{define "main"}}
+
+<!-- Define variables for dynamic creation-->
+{{ $thisdir := .File.Dir }}
+{{ $thisfile:= .File.TranslationBaseName}}
+{{ $learningpathfiles := slice }}
+
+
+
+
+<div class="c-row md:is-collapsed u-gap-1-1/2 u-flex-nowrap u-padding-top-1">
+    <!-- Left pane -->
+    <div class="c-col lg:c-col-3 xl:c-col-2 u-hide lg:u-display-block u-flex-shrink-0">
+        <div class="left-nav-pane">
+
+            <!-- Title of _index.md always top left -->
+            {{ with .Site.GetPage $thisdir}}
+                <h6 id="learning-path-title" class="u-margin-top-1/2" style="font-size:1em; font-weight: normal;">{{ .Params.Title }}</h6>
+                <!-- Author name hidden but availible for analytics -->
+                <div hidden id="learning-path-author" 
+                data-author='{{ if reflect.IsSlice .Params.author }}{{ delimit .Params.author ", " }}{{ else }}{{ .Params.author }}{{ end }}'></div>
+            {{ end }}
+
+
+            <!-- Dynamic, content ordered by weight-->
+            {{ $counter := 0 }}       <!-- Counter to track index-->
+            {{ range .Site.Pages.ByWeight }}
+                {{ if .File}}
+                   <!-- Add option for metadata to optionally hide page from navigation pane-->
+                   {{ if ne .Params.hide_from_navpane true  }}
+                        {{ if (eq .File.Dir $thisdir)}}
+                            {{ $learningpathfiles = $learningpathfiles | append . }}
+
+                            <!-- Call partial to fill out navigation tabs -->
+                            {{partial "navigation/content-navigation.html" (dict "context" . "thisfile" $thisfile "counter" $counter) }}
+                            {{ $counter = add $counter 1 }}
+                        {{ end }}
+                    {{ end }}
+                {{end}}
+            {{end}} 
+
+            <!-- GitHub links to edit / log an issue -->
+            {{partial "general-formatting/github-links.html" .  }}
+        </div>
+    </div>
+
+    <!-- Right pane, content-->
+    <div class="c-col lg:c-col-9 xl:c-col-10">
+
+        <!-- Mobile only shown navigation - sticky header -->
+        {{partial "navigation/content-navigation-mobile.html" (dict "context" .    "thisfile" $thisfile    "thisdir" $thisdir    "filesindir" $learningpathfiles)  }}
+
+
+        <!-- Custom content layout depending on type -->
+        {{if .File}}
+            {{ if eq .File.TranslationBaseName "_index" }}
+                {{partial "learning-paths/introduction" .  }}
+            {{else if eq .File.TranslationBaseName "_demo"}}
+                {{partial "learning-paths/demo" .  }}
+            {{else if eq .File.TranslationBaseName "_review"}}
+                {{partial "learning-paths/review" (dict "context" . "learningpathfiles" $learningpathfiles)  }}
+            {{else if eq .File.TranslationBaseName "_next-steps"}}
+                {{partial "learning-paths/next-steps" (dict "context" . "learningpathfiles" $learningpathfiles)  }}
+            {{ else }}
+                {{partial "learning-paths/content" (dict "context" . "learningpathfiles" $learningpathfiles)  }}
+            {{ end }}
+        {{end}}
+
+        <!-- Next steps for buttons -->
+        {{ if ne .File.TranslationBaseName "_demo"}}
+            {{partial "navigation/nav-buttons" (dict "context" . "learningpathfiles" $learningpathfiles)  }}
+        {{end}}
+    </div>
+</div>
+
+{{end}}

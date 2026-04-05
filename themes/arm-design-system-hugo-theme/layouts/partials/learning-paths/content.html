@@ -1,0 +1,14 @@
+{{/*
+Formats content from markdown files.
+
+Where it is used:
+    - learning paths
+
+Called from:
+    - partials learning-paths/learningpathall.html
+*/}}
+
+<!-- Markdown content -->
+<div class="content-box markdown-content-div">
+    {{partial "general-formatting/markdown-content-formatting.html" .context.Content}}
+</div>

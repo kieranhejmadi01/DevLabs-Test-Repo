@@ -1,0 +1,69 @@
+{{/*
+A content page wrapper for challenge content.
+
+Where it is used:
+    - /challenges/<challenge>/
+    - /challenges/<series>/
+    - /challenges/<series>/<part>/
+*/}}
+
+{{define "main"}}
+
+{{ $thisdir := .File.Dir }}
+{{ $thisfile:= .File.TranslationBaseName}}
+{{ $challengefiles := slice }}
+{{ $main_challenge_title := .Params.Title }}
+
+{{ with .Site.GetPage $thisdir}}
+    {{ $main_challenge_title = .Params.Title }}
+{{ end }}
+
+<div class="c-row md:is-collapsed u-gap-1-1/2 u-flex-nowrap u-padding-top-1">
+    <div class="c-col lg:c-col-3 xl:c-col-2 u-hide lg:u-display-block u-flex-shrink-0">
+        <div class="left-nav-pane">
+            <h6 id="challenge-title" class="u-margin-top-1/2" style="font-size:1em; font-weight: normal;">{{ $main_challenge_title }}</h6>
+
+            {{ $counter := 0 }}
+            {{ range .Site.Pages.ByWeight }}
+                {{ if .File }}
+                    {{ if ne .Params.hide_from_navpane true }}
+                        {{ if (eq .File.Dir $thisdir)}}
+                            {{ $challengefiles = $challengefiles | append . }}
+                            {{partial "navigation/content-navigation.html" (dict "context" . "thisfile" $thisfile "counter" $counter) }}
+                            {{ $counter = add $counter 1 }}
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+
+            {{partial "general-formatting/github-links.html" .  }}
+        </div>
+    </div>
+
+    <div class="c-col lg:c-col-9 xl:c-col-10">
+        {{partial "navigation/content-navigation-mobile.html" (dict "context" .    "thisfile" $thisfile    "thisdir" $thisdir    "filesindir" $challengefiles)  }}
+
+        {{if eq .File.TranslationBaseName "_index"}}
+            {{partial "general-formatting/metadata-table.html" .}}
+        {{end}}
+
+        {{partial "challenges/content.html" (dict "context" . "challengefiles" $challengefiles)  }}
+
+        {{if eq .File.TranslationBaseName "_index"}}
+            {{ partial "challenges/community-attempts.html" . }}
+        {{end}}
+
+        {{partial "navigation/challenge-nav-buttons.html" (dict "context" . "challengefiles" $challengefiles)  }}
+
+        <br>
+        <div style="min-height: 350px;">
+            <div class="c-row">
+                <div class="c-col">
+                    {{partial "general-formatting/feedback.html" (dict "context" . "learningpath_or_toolinstall" "challenge page")  }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{end}}

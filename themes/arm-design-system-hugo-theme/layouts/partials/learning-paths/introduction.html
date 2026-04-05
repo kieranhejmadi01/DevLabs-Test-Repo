@@ -1,0 +1,38 @@
+{{/*
+Introduction page for learning path formatting.
+
+Where it is used:
+    - learning paths, intro page
+
+Called from:
+    - partials learning-paths/learningpathall.html
+
+Calls to:
+    - partial general-formatting/metadata-table.html
+*/}}
+
+
+<!-- Markdown metadata table -->
+{{partial "general-formatting/metadata-table.html" .}}
+
+
+<!-- Learning objectives & Prereq box -->
+<div class="content-box">
+    <h3>Who is this for?</h3>
+        <p class="u-margin-left-1">{{ .Params.who_is_this_for }}</p>
+    <h3 class="u-margin-top-2">What will you learn?</h3>
+        <p class="u-margin-left-1">Upon completion of this Learning Path, you will be able to:</p>
+        <ul>
+            {{ range .Params.learning_objectives }}
+            <li class="u-margin-left-2">{{.}}</li>
+            {{ end }}  
+        </ul>
+    <h3 class="u-margin-top-2">Prerequisites</h3>
+        <p class="u-margin-left-1">Before starting, you will need the following:</p>
+        <ul>
+            {{ range .Params.prerequisites }}
+                <!-- Markdownify to support links -->
+                <li class="u-margin-left-2">{{. | markdownify}}</li>
+            {{ end }}
+        </ul>
+</div>

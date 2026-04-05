@@ -1,0 +1,69 @@
+{{/*
+Route general filter request to show the right filters depending on page type
+
+Where it is used:
+    - /learning-paths/:category/
+    - /learning-paths/microcontroller/
+
+Called from:
+    - _default/term.html
+    - learning-paths/list.html
+    - filter-search-sort/mobile-search-and-filter.html
+
+Calls to:
+    - partial filter-search-sort/closed-expansion.html
+    - partial filter-search-sort/open-expansion.html
+*/}}
+
+
+<!-- Calculate main_category_titles, for term pages only -->
+{{ $main_category_titles := slice }}
+{{ range where $.context.Site.Pages "Params.maintopic" true}}
+    {{ $main_category_titles = $main_category_titles | append .Title }}
+{{end}}
+
+
+<!-- Display filters for specific categories -->
+{{ if eq .page_type "learning-path-category"}}
+    {{/* Only display Cloud Service Providers in Server & Cloud Computing area */}}
+    {{ if eq "Servers and Cloud Computing" .context.Title}}
+        {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Cloud Service Providers" "routing" "cloud_service_providers" "tagnames" .context.Params.cloud_service_providers_filter)}} 
+    {{end}}
+
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Subjects" "routing" "subjects" "tagnames" .context.Params.subjects_filter)}} 
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "OS" "routing" "operatingsystems" "tagnames" .context.Params.operatingsystems_filter)}} 
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Skill Level" "routing" "skilllevels" "tagnames" (slice "Introductory" "Advanced"))}}
+    {{ partial "filter-search-sort/open-expansion.html"   (dict "context" .context "displayname" "Tools, Software, and Languages"  "tagnames" .context.Params.tools_software_languages_filter)}}
+{{ else if eq .page_type "challenge-list"}}
+    {{ $challenge_pages := where .context.Site.Pages "Params.challenge" true }}
+    {{ $subject_counts := dict }}
+    {{ $tool_counts := dict }}
+    {{ $subject_filters := slice }}
+    {{ $tool_filters := slice }}
+
+    {{ range $challenge_pages }}
+        {{ with .Params.subjects }}
+            {{ $current_count := index $subject_counts . | default 0 }}
+            {{ $subject_counts = merge $subject_counts (dict . (add $current_count 1)) }}
+        {{ end }}
+        {{ with .Params.tools_software_languages }}
+            {{ range . }}
+                {{ $current_count := index $tool_counts . | default 0 }}
+                {{ $tool_counts = merge $tool_counts (dict . (add $current_count 1)) }}
+            {{ end }}
+        {{ end }}
+    {{ end }}
+
+    {{ range $name, $count := $subject_counts }}
+        {{ $subject_filters = $subject_filters | append (dict $name $count) }}
+    {{ end }}
+    {{ range $name, $count := $tool_counts }}
+        {{ $tool_filters = $tool_filters | append (dict $name $count) }}
+    {{ end }}
+
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Subjects" "routing" "subjects" "tagnames" $subject_filters)}}
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Skill Level" "routing" "skilllevels" "tagnames" (slice "Introductory" "Advanced"))}}
+    {{ partial "filter-search-sort/open-expansion.html"   (dict "context" .context "displayname" "Tools, Software, and Languages"  "tagnames" $tool_filters)}}
+{{ else if eq .page_type "learning-path-term"}}
+    {{ partial "filter-search-sort/closed-expansion.html" (dict "context" .context "displayname" "Categories" "routing" "learning-paths" "tagnames" $main_category_titles)}} 
+{{end}}

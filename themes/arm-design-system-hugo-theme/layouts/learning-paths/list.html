@@ -1,0 +1,147 @@
+{{/*
+A list page that shows all Learning Paths pages under the selected category.
+
+Where it is used:
+    - /learning-paths/:main-category/
+    - /learning-paths/embedded-and-microcontrollers/
+
+Called from:
+    - baseof
+
+Calls to:
+    - partial filter-search-sort/filter-definition.html
+    - partial filter-search-sort/mobile-search-and-filter.html
+    - partial filter-search-sort/active-filter-and-sort-bar.html
+    - partial general-formatting/path-ads-card.html      
+    - partial general-formatting/guided-modules.html       (not currently used)
+*/}}
+
+
+{{define "main"}}
+
+<!-- Get all learning path pages in this category -->
+{{ $paths_to_list := .Pages }}
+
+<!-- Add learning paths from cross-platform that are in this category. 
+    This function assumes that the directory name of a learning path is the same as the .Title | urlize. If this IS NOT true, either:
+        A) change '.TITLE | urilze' to get the name of the directory, or 
+        B) change the shared_path links in cross-platform to match. -->
+{{ $section_title := .Title | urlize}}
+{{ range where $.Site.Pages "Params.shared_path" true}}
+    {{ if in .Params.shared_between $section_title}}
+        {{ $paths_to_list = $paths_to_list | append . }}
+    {{end}}
+{{end}}
+
+
+{{/*
+    Calculate the proper Last Modified date, originating from any .md file for each Learning Path.
+*/}}
+{{ $blogs := slice }}
+
+<!-- Create a dictionary of Learning Paths that matches the page to the 'last modified' date.     -->
+{{ range $paths_to_list }}
+    {{- $true_last_mod_date := partial "server-side-processing/calculate-last-update.html" . }}
+    {{- $blogs = $blogs | append (dict "learning_path" . "calculated_date" $true_last_mod_date) }}
+{{ end }}
+
+<!-- Sort using the CalculatedDate -->
+{{ $sorted_paths_to_list := sort $blogs "calculated_date" "desc" }}
+
+{{/* 
+{{ range $sorted_paths_to_list }}
+  <p>{{ .learning_path.Title }}</p>
+  <p>{{ .calculated_date.Format "02 Jan 2006" }} </p>
+  <p></p>
+{{ end }}
+*/}}
+
+
+
+<!-- Page wrapping row -->
+<div class="c-row md:is-collapsed u-gap-1-1/2 u-flex-nowrap u-padding-top-2 u-padding-bottom-2-1/2">
+    <!-- Filter bar on left -->
+    <div class="c-col u-hide lg:u-display-block u-flex-shrink-0 filter-column-div">
+        {{ partial "filter-search-sort/filter-definition.html" (dict "context" . "page_type" "learning-path-category")}} 
+    </div>
+
+    <!-- Search & Results on Right -->
+    <div class="c-col">
+
+        <!-- Guided content implementation...hidden for now. -->
+        <!-- {{ partial "general-formatting/guided-modules.html" . }}  -->
+
+        <!-- Guided content for new starters -->
+            <!-- Don't load for cross platform or main page to avoid link htmltest issues -->
+        {{if ne "Cross Platform" .Title}}
+            {{if ne "learning-paths" (.Title | urlize)}}
+                <div style="text-align: center; margin-top: -16px; padding-bottom: 16px;">
+                    <a 
+                    {{if eq "Automotive" .Title}}
+                        href="https://developer.arm.com/Automotive"
+                    {{else}}
+                        href="/learning-paths/{{.Title | urlize}}/intro/"
+                    {{end}}
+                    ><h6 class="basics-title">New? Learn the basics of {{.Title}}.</h6></a>
+                </div>
+            {{end}}
+        {{end}}
+        
+
+        <!-- Mobile: Search & Filter -->
+        {{ partial "filter-search-sort/mobile-search-and-filter.html" (dict "context" . "page_type" "learning-path-category")}} 
+
+        <!-- Bars: Active Filters, # content displayed, sort by. -->
+        {{ partial "filter-search-sort/active-filter-and-sort-bar.html" (dict "content_to_list" $paths_to_list "page_type" "learning paths")}} 
+
+     
+        <!-- List of learning paths on right -->
+        <div class="c-row">
+            <div class="c-col c-col-12">
+                <hr id="divider-line" class="">
+            </div>
+            
+            <div class="c-col c-col-12">
+                <div id='path-container' class="u-display-grid u-gap-1 sm:u-grid-columns-1 md:u-grid-columns-2 xl:u-grid-columns-2 xxl:u-grid-columns-3 u-margin-top-1">
+                    {{ range $sorted_paths_to_list }}
+                        <!-- This div assigns tags for each LP for filtering. -->
+                        <div class='path-div search-div gradient-box
+                                {{ with .learning_path.Params.skillLevels }}
+                                    tag-{{. | urlize}}
+                                {{ end }}
+                                {{ with .learning_path.Params.subjects }}
+                                    tag-{{. | urlize}}
+                                {{ end }}
+                                {{ with .learning_path.Params.cloud_service_providers }}
+                                    {{ range . }}
+                                        tag-{{. | urlize}}
+                                    {{ end }}
+                                {{ end }}
+                                {{ with .learning_path.Params.armips }}
+                                    {{range .}}
+                                        tag-{{. | urlize}}
+                                    {{end}}
+                                {{ end }}
+                                {{ with .learning_path.Params.operatingsystems }}
+                                    {{ range .}}
+                                        tag-{{. | urlize}}
+                                    {{ end }}
+                                {{ end }}
+                                {{ with .learning_path.Params.tools_software_languages }}
+                                    {{ range .}}
+                                        tag-{{replace (. | urlize) "+" "plus"}}
+                                    {{end}}
+                                {{ end }}
+                                '>                            
+                            <!-- Path card formatting -->
+                            {{ partial "general-formatting/path-ads-card.html" (dict "learning_path" .learning_path "calculated_date" .calculated_date) }}    
+                        </div>           
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{end}}

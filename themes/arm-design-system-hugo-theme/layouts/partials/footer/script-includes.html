@@ -1,0 +1,131 @@
+{{/*
+Contians all javascript functions to include, specific to each page.
+
+Where it is used:
+    - all
+
+Called from:
+    - baseof (the end)
+*/}}
+
+<!-- Hugo processing -->
+{{$is_content := or (eq .Layout "learningpathall") (eq .Layout "installtoolsall") (eq .Layout "challengeall")}}
+{{$is_list := and (not $is_content) (.IsNode) (not .IsHome) }}
+
+
+<!-- Feedback is on     _next-steps.md learning path          install tool everything-->
+
+<!-- All pages -->
+{{ if not (in .Site.BaseURL "localhost") }}
+    <!-- OneTrust Cookies Consent Notice start for arm.com -->
+    <script
+        src=https://cdn.cookielaw.org/scripttemplates/otSDKStub.js
+        data-document-language="true"
+        type="text/javascript"
+        charset="UTF-8"
+        data-domain-script="7d663903-ba9e-4bc2-a2f8-5844edbb5408">
+    </script>
+    <script type="text/javascript">
+        function OptanonWrapper() { }
+    </script>
+
+    <script>
+        window.onload = function() {
+            let analytics = document.querySelector(".CoveoAnalytics");
+            if (analytics) {
+                let coveo_analytics = Coveo.get(analytics);
+                if (coveo_analytics && window && window.OnetrustActiveGroups && !window.OnetrustActiveGroups.includes('C0002')) {
+                    coveo_analytics.disable();
+                }
+            }
+        };
+    </script>
+    <!-- OneTrust Cookies Consent Notice end for arm.com -->
+{{end}}
+<script src="/js/globalVarsandPreferences.js" defer></script>
+<script src="/js/anonymous-analytics.js" defer></script>          <!-- Include javascript to track custom analytics -->
+<script src="/js/armid-and-navsearch.js" defer></script>  
+{{ if not (in .Site.BaseURL "localhost") }}
+<script type="text/javascript" src="https://content.dev.bespin.arm.com/VirtualFAE/learnarm/stage/chat-ai.js" defer></script>
+{{ end }}
+<script src="/vendor/msal-browser.min.js" defer></script> <!-- Authentication -->
+<script src="/js/authentication.js" defer></script> <!-- Authentication -->
+
+
+
+
+<!-- Homepage only -->
+{{if .IsHome }}
+    <script src="/js/search-and-filter.js" defer></script>
+{{end}}
+
+<!-- List pages only -->
+{{if $is_list}}
+    <script src="/js/search-and-filter.js" defer></script>
+    <script src="/js/filter-and-navigate-mobile-behavior.js" defer></script>
+{{end}}
+
+<!-- Content pages only that are not _index, _next-steps, or _review -->
+{{if and $is_content (or (not (hasPrefix .File.TranslationBaseName "_")) (eq .Layout "challengeall"))}}
+    <script src="/js/prism.js" defer></script>                        <!-- Include code highlighting javascript, Prism-->
+    <script src="/js/prism_post_output_formating.js" defer></script>  <!-- must be called after prism.js to modify it once rendered -->
+{{end}}
+
+<!-- Demo page only -->
+{{ if and $is_content (hasPrefix .File.TranslationBaseName "_demo")}}
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+{{end}}
+
+<!-- Also add prism to any _demo page that needs it, set as a 'prismjs' variable -->
+{{ if and $is_content (hasPrefix .File.TranslationBaseName "_demo") .Params.prismjs }}
+    <script src="/js/prism.js" defer></script>                        <!-- Include code highlighting javascript, Prism-->
+    <script src="/js/prism_post_output_formating.js" defer></script>  <!-- must be called after prism.js to modify it once rendered -->
+{{end}}
+{{if $is_content}}
+    <script src="/js/filter-and-navigate-mobile-behavior.js" defer></script> <!-- Always need on content, contains mobile content page nav -->
+    <script src="/js/feedback-form-behavior.js" defer></script>       <!-- Only needed on install guide pages and content pages -->
+{{end}}
+<script>
+    (function () {
+        function updateMastheadHeight() {
+            var masthead = document.getElementById('expanded-masthead');
+            var title = document.getElementById('ads-masthead-title');
+            if (!masthead || !title) return;
+
+            var styles = window.getComputedStyle(title);
+            var lineHeight = parseFloat(styles.lineHeight);
+            if (!lineHeight || Number.isNaN(lineHeight)) {
+                masthead.classList.remove('is-two-lines');
+                return;
+            }
+
+            var isTwoLines = title.scrollHeight > (lineHeight * 1.5);
+            masthead.classList.toggle('is-two-lines', isTwoLines);
+        }
+
+        var rafId = null;
+        function scheduleUpdate() {
+            if (rafId) return;
+            rafId = window.requestAnimationFrame(function () {
+                rafId = null;
+                updateMastheadHeight();
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', scheduleUpdate);
+        } else {
+            scheduleUpdate();
+        }
+
+        window.addEventListener('resize', scheduleUpdate);
+        window.addEventListener('pageshow', scheduleUpdate);
+    })();
+</script>
+{{if .File}}
+    {{if .File.TranslationBaseName}}
+        {{if hasPrefix .File.TranslationBaseName "_review"}}
+            <script src="/js/review-question-behavior.js" defer></script>       <!-- Only needed on install guide pages and content pages -->
+        {{end}}
+    {{end}}
+{{end}}

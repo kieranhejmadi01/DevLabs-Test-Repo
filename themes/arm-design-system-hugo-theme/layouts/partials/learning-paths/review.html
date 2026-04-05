@@ -1,0 +1,66 @@
+{{/*
+Review page for learning paths, asking questions to the reader. review-question-behavior.js has the processing function for this.
+
+Where it is used:
+    - learning paths, review page
+
+Called from:
+    - partials learning-paths/learningpathall.html
+*/}}
+
+
+<!-- Learning objective reiteration -->
+<div class="content-box">
+    <h2 >What you've learned</h2>
+    <p class="u-margin-left-1">You should now know how to:</p>
+    <ul>
+    {{ range (index .learningpathfiles 0).Params.learning_objectives }}
+        <li class="u-margin-left-2">{{.}}</li>
+    {{end}}
+    </ul>
+</div>
+
+
+<!-- Q&A section -->
+<div class="content-box">
+    <h2>Knowledge Check</h2>  
+    
+    <form action="javascript:reviewQuestionProcessing()">
+            {{range $index, $q := .context.Params.review}}
+                {{$q_num := (add $index 1)}}
+                {{ with $q.questions}}
+                        <!-- Questions -->
+                        <p class="u-margin-bottom-0 u-margin-top-1">{{.question}}</p>
+                        <div id="question-{{$q_num}}" class="info_text" hidden>
+                                <div class="u-margin-left-2 info_text_preexplination">{{.explanation}}</div>
+                        </div>
+                        <div class="answer-group answers-for-question-{{$q_num}}">
+                            {{ range $a_num, $answer := .answers }}
+                                <div id="div-{{$q_num}}-{{add $a_num 1}}" class="u-padding-left-1 answer {{if eq $q.questions.correct_answer (add $a_num 1)}}correct{{end}}" >
+                                    <span class="fa-solid checkbox-icon {{if eq $q.questions.correct_answer (add $a_num 1)}}fa-circle-check{{else}}fa-times-circle{{end}}" style="visibility: hidden;"></span>
+                                    <input type="radio" class="u-margin-bottom-1/2" id="answer-{{$q_num}}-{{add $a_num 1}}" name="question-{{$q_num}}">
+                                    <label class="u-margin-left-1/2" for="answer-{{$q_num}}-{{add $a_num 1}}">{{.}}</label>
+                                </div>
+                            {{end}}
+                        </div>
+                        <!-- End of Questions-->
+                {{end}}
+            {{end}} 
+
+    <br>
+    <!-- Submit button -->
+    <div id="check-answer-btn-div">
+        <input type="submit" value="See Answers" id="check-answer-btn">
+    </div>
+    <!-- View Next Steps button is shown a few seconds after answering the Qs to prompt moving on -->
+    <div id="push-to-next-steps-div" hidden>
+        <ads-button name="Next Steps" class="inner-learning-path-navbtn-element {{sub (len .learningpathfiles) 1}}-weight" onclick="window.location.href={{(index .learningpathfiles (sub (len .learningpathfiles) 1)).Permalink}}" level="primary">
+            View Next Steps
+        </ads-button>
+    </div>
+    <!-- Only displays error message if user doesn't answer all Qs and presses the See Answers CTA -->
+    <div id="error-answer-all-questions-message" hidden>
+        <p class="incorrect-explain u-margin-bottom-0">You need to answer each question to see the results.</p>
+    </div>
+    </form>      
+</div>

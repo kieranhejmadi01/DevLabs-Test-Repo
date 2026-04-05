@@ -1,0 +1,12 @@
+{
+    "name": "Arm Learning Paths",
+
+    "image": "docker.io/armswdev/learn-dev-container:latest",
+
+    "forwardPorts": [1313],
+
+    "remoteUser": "ubuntu",
+
+    "postStartCommand": "nohup bash -c 'hugo ; hugo server --baseURL=/ --liveReloadPort=443 --appendPort=false --bind=0.0.0.0 &' "
+
+}
