@@ -26,6 +26,10 @@ Where it is used:
     {{$breadcrumb_title := .p1.Title}}
     {{$breadcrumb_link := .p1.Permalink}}
 
+    {{ if .p1.IsHome }}
+        {{$breadcrumb_link = "https://learn.arm.com/"}}
+    {{ end }}
+
     {{ if eq .p1.Title "Cross Platform"}}
         <!-- Set title and permalink to the first category in cross-platform _index.md file -->
         {{$selected_category := "cross-platform"}}
