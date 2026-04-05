@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <title>Redirecting...</title>
-  <meta http-equiv="refresh" content="0; url=/challenges/">
-  <script>window.location.replace('/challenges/');</script>
+  <meta http-equiv="refresh" content="0; url={{ "challenges/" | absURL }}">
+  <script>window.location.replace('{{ "challenges/" | absURL }}');</script>
 </head>
 <body>
-  <p>Redirecting to <a href="/challenges/">/challenges/</a>...</p>
+  <p>Redirecting to <a href="{{ "challenges/" | absURL }}">challenges</a>...</p>
 </body>
 </html>
