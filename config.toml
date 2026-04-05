@@ -1,4 +1,4 @@
-title = 'Arm Learning Paths'
+title = 'Arm Developer Labs'
 
 baseURL = '/'
 languageCode = 'en-us'
@@ -6,22 +6,6 @@ theme = "arm-design-system-hugo-theme"
 
 enableGitInfo = true
 enableRobotsTXT = true
-
-[deployment]
-[[deployment.targets]]
-name = "internal-existing"
-URL = "s3://armswdev.tk?region=us-east-1"
-cloudFrontDistributionID = "E2VDQ2CYZATMO9"
-
-[[deployment.targets]]
-name = "internal"
-URL = "s3://arm-learning-paths-internal?region=us-west-2"
-cloudFrontDistributionID = "ENN4LK1IZUDIX"
-
-[[deployment.targets]]
-name = "production"
-URL = "s3://arm-learning-paths?region=us-west-2"
-cloudFrontDistributionID = "E2NEF61QWPFRIH"
 
 [markup]
   [markup.goldmark]
@@ -71,9 +55,9 @@ weight = 50
 
 [params]
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/ArmDeveloperEcosystem/arm-learning-paths"
+github_repo = "https://github.com/kieranhejmadi01/DevLabs-Test-Repo"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
-github_project_repo = "https://github.com/ArmDeveloperEcosystem/arm-learning-paths"
+github_project_repo = "https://github.com/kieranhejmadi01/DevLabs-Test-Repo"
 # location of assets
 assetsDir = "assets"
 
