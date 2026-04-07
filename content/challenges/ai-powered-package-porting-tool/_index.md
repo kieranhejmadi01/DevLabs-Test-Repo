@@ -19,26 +19,28 @@ community_attempts:
     title: "Arm Model Context Protocol (MCP) Server"
     author: "Arm Limited and Contributors"
     summary: "An MCP server providing AI assistants with tools and knowledge for Arm architecture development, migration, and optimization."
+#challenge_deadline: "There is a short deadline of tomorrow so you can start and complete the challenge at your convenience."
+#challenge_prize: "Standout submissions can be featured on this website as formal recognition from Arm, giving you an achievement you can reference on LinkedIn and on your CV."
 challenge: true
 multi_challenge: false
 multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 As Arm laptops, desktops, and Windows on Arm devices become more common, more developers need native software support outside Linux. Community ecosystems such as Bioconda and R still contain many packages that fall back to emulated x86 environments or fail to build because of architecture-specific assumptions.
 
 In this challenge, you build an intelligent automation tool that helps port packages to Arm-based platforms. The goal is to reduce repetitive manual effort by combining dependency analysis, build automation, and machine-assisted reasoning.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Create an intelligent automation tool that supports package porting for domains such as bioinformatics pipelines with Nextflow or statistics workflows with R.
 
 The outcome should go beyond simple shell scripting. Your solution should use dependency graph analysis and automation to identify unported packages, recommend or generate fixes, evaluate build results, and help contributors upstream support.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Aim to support tasks such as:
 
@@ -49,14 +51,14 @@ Aim to support tasks such as:
 - Generating pull requests when the tool is confident in a fix
 - Suggesting techniques such as SSE2NEON when packages rely on x86 intrinsics
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - Package ecosystem analysis
 - Dependency graph reasoning
 - Build automation and CI design
 - Porting workflows for Arm systems
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect technical depth, practical impact, and value to the Arm software ecosystem.
 
@@ -76,7 +78,7 @@ Your project should be straightforward to evaluate and reuse. Clear documentatio
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -85,7 +87,7 @@ These skills and resources are helpful before you begin:
 - Familiarity with genomics, bioinformatics, or R-based statistics workflows
 - Experience with nf-core, Conda, Bioconda, and Docker or Singularity
 
-## Resources
+## 📚 Resources
 
 - External resource: [Example porting scripts and Arm64 nf-core pipeline work](https://github.com/dslarm/bioconda-contrib-notes/tree/main)
 - External resource: [Arm64 nf-core pipelines](https://github.com/ewels/nf-core-arm-discovery/tree/main)

@@ -14,26 +14,28 @@ operatingsystems:
     - Android
     - Linux
     - Windows
+#challenge_deadline: "There is a short deadline of tomorrow so you can start and complete the challenge at your convenience."
+#challenge_prize: "Standout submissions can be featured on this website as formal recognition from Arm, giving you an achievement you can reference on LinkedIn and on your CV."
 challenge: true
 multi_challenge: false
 multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Large language models can make game characters more adaptive and responsive than traditional scripted dialogue trees. Running these models locally on Arm-powered systems can improve responsiveness while avoiding reliance on cloud infrastructure.
 
 In this challenge, you explore novel ways of using on-device LLMs to drive real-time NPC interaction in games. The goal is not only to generate dialogue, but to create convincing, responsive NPC behavior in a playable prototype.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Propose and implement a novel method of using LLMs to control or interact with NPCs during runtime.
 
 Your final prototype should run locally at a stable frame rate and demonstrate a real gameplay scenario. A mobile deployment is ideal, but a PC or laptop proof of concept is acceptable if it shows the design clearly.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Your submission should include, where possible:
 
@@ -42,14 +44,14 @@ Your submission should include, where possible:
 - A supporting document that explains the design decisions
 - High-quality images and a short demo video that shows the prototype in action
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - LLM integration in game engines
 - Real-time systems design
 - On-device AI optimization
 - Gameplay prototyping on Arm
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect gameplay value, technical quality, and suitability for Arm-based systems.
 
@@ -69,7 +71,7 @@ Your submission should make the design easy to understand and review. Clear setu
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -78,7 +80,7 @@ These skills and resources are helpful before you begin:
 - Knowledge of C++, Python, or a game scripting language
 - Understanding of on-device ML optimization, such as quantization and mobile deployment
 
-## Resources
+## 📚 Resources
 
 - Paper: [The future of interaction with mobile game characters](https://dl.acm.org/doi/10.1145/3641234.3671019)
 - Paper: [The future is here: verbal interaction with NPCs on mobile](https://doi.org/10.1145/3664294.3664365)

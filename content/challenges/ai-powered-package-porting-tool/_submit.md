@@ -20,7 +20,7 @@ If you are sharing your solution through a public GitHub repository, make sure r
 
 ### Update the challenge index
 
-To submit your work, open a pull request against the [Arm Learning Path repository](https://github.com/ArmDeveloperEcosystem/arm-learning-paths) and update the challenge `_index.md` file for this challenge with your project details.
+To submit your work, open a pull request against the [Arm Developer Labs repository](https://github.com/kieranhejmadi01/DevLabs-Test-Repo.git) and update the challenge `_index.md` file for this challenge with your project details.
 
 Add your entry under `community_attempts` using this pattern:
 
@@ -43,4 +43,6 @@ community_attempts:
 ### Hearing back from us
 
 Thank you for taking the time to submit your work. Submissions are assessed against the criteria in the Challenge brief section, and while it can take several weeks to hear back, standout submissions might be featured on the website.
+If you enjoyed this challenge, we encourage you to explore opportunities with us—Arm is actively looking for individuals with skills like the ones you have developed. Visit  [our career page](https://careers.arm.com/) to learn more.
 
+For any questions about the challenge or your submission, you can contact the team at Arm-Developer-Labs@arm.com.

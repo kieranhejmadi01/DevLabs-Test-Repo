@@ -20,14 +20,14 @@ multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Generative AI has made it much easier to manipulate images, video, and audio, which creates a trust gap for viewers and organizations. Provenance frameworks such as C2PA help address this by attaching signed, machine-verifiable metadata that explains how media was created, edited, or analyzed.
 
 In this challenge, you build an AI-augmented audio or video capture and provenance system on an Arm-powered device. Your solution should combine on-device inference with transparent provenance metadata so others can inspect how media was processed.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Build and evaluate a provenance-aware media pipeline on an Arm-powered device that:
 
@@ -35,20 +35,20 @@ Build and evaluate a provenance-aware media pipeline on an Arm-powered device th
 - runs AI models on-device
 - generates C2PA content credentials that disclose which models ran and what effect they had
 
-## Suggested scope
+## 🎯 Suggested scope
 
 The best starting point is static audio or video files. If possible, extend the project to streamed media so your system can attach provenance information in real time.
 
 Your final result should demonstrate trust and auditability for use cases such as content integrity validation and responsible media pipelines.
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - Content provenance and authentication
 - Real-time media processing
 - On-device AI inference on Arm
 - Responsible media system design
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect trustworthiness, technical quality, and practical use of Arm-powered media pipelines.
 
@@ -68,7 +68,7 @@ Your project should make it easy to understand how the pipeline works and how to
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -76,7 +76,7 @@ These skills and resources are helpful before you begin:
 - Willingness to learn about C2PA and provenance concepts
 - Familiarity with optimized inference on Arm-powered CPUs using frameworks with KleidiAI integration
 
-## Resources
+## 📚 Resources
 
 - Documentation: [Live video streaming in the C2PA specification](https://spec.c2pa.org/specifications/specifications/2.3/specs/C2PA_Specification.html#live-video)
 - Repository: [C2PA Rust implementation](https://github.com/contentauth/c2pa-rs)

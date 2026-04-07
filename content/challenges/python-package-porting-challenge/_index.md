@@ -17,24 +17,26 @@ community_attempts:
     title: "Arm Model Context Protocol (MCP) Server"
     author: "Arm Limited and Contributors"
     summary: "An MCP server providing AI assistants with tools and knowledge for Arm architecture development, migration, and optimization."
+#challenge_deadline: "There is a short deadline of tomorrow so you can start and complete the challenge at your convenience."
+#challenge_prize: "Standout submissions can be featured on this website as formal recognition from Arm, giving you an achievement you can reference on LinkedIn and on your CV."
 challenge: true
 multi_challenge: false
 multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Windows on Arm brings Arm performance and efficiency to more desktop systems, but developers still hit package ecosystem gaps. Many widely used Python packages do not ship `win_arm64` wheels, which forces users to rebuild from source and often exposes architecture-specific issues.
 
 In this challenge, you help improve the Windows on Arm Python package ecosystem by validating packages, fixing compatibility issues, and upstreaming support for Arm-native binaries.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Advance the Windows on Arm Python ecosystem by validating and optimizing third-party packages so they build and run successfully on `win_arm64`.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Aim to complete work such as:
 
@@ -44,14 +46,14 @@ Aim to complete work such as:
 - Create patches that allow packages to build and run correctly
 - Collaborate with maintainers to upstream your fixes
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - Python packaging
 - Continuous integration testing
 - Porting native extensions to Arm
 - Collaboration with upstream open source maintainers
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect ecosystem impact, technical quality, and effectiveness on Windows on Arm.
 
@@ -71,7 +73,7 @@ Your project should make the porting work easy to review and repeat. Clear notes
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -79,7 +81,7 @@ These skills and resources are helpful before you begin:
 - Experience creating Python packages and CI workflows
 - Familiarity with Rust, Java, or C++ if you choose non-pure-Python packages
 
-## Resources
+## 📚 Resources
 
 - Documentation: [Windows on Arm environments](https://linaro.atlassian.net/wiki/spaces/WOAR/pages/29005479987/Windows+on+Arm+Environments)
 - Documentation: [Python packages without Windows on Arm wheels](https://tonybaloney.github.io/windows-arm64-wheels/)

@@ -14,13 +14,15 @@ operatingsystems:
     - Linux
     - Android
     - macOS
+#challenge_deadline: "There is a short deadline of tomorrow so you can start and complete the challenge at your convenience."
+#challenge_prize: "Standout submissions can be featured on this website as formal recognition from Arm, giving you an achievement you can reference on LinkedIn and on your CV."
 challenge: true
 multi_challenge: false
 multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Modern camera experiences such as night mode, portrait effects, and extreme zoom increasingly depend on neural networks. With Arm SME2 and related acceleration features becoming available in commercial devices, more of these workloads can run efficiently on Arm CPUs and GPUs.
 
@@ -29,7 +31,7 @@ Modern camera experiences such as night mode, portrait effects, and extreme zoom
 In this challenge, you design and implement a novel computational photography pipeline optimized for an Arm-based device. Your solution should focus on both image quality and execution efficiency.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Design and implement one of the following computational photography pipelines, or a closely related variant, on an Arm-based system:
 
@@ -38,7 +40,7 @@ Design and implement one of the following computational photography pipelines, o
 - Neural ray denoising for rendering-related image data
 - Generative AI pipelines such as style transfer or diffusion-based enhancement
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Your project should aim to optimize both inference latency and perceived image quality. The technical criteria include:
 
@@ -46,14 +48,14 @@ Your project should aim to optimize both inference latency and perceived image q
 - Preferably use the ExecuTorch runtime with Arm Neural Technology and the ML extensions for Vulkan backend
 - Run on an Arm-based CPU with SIMD support such as SVE or SME, or on a Neural Graphics capable GPU
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - Computational photography design
 - Neural inference optimization
 - SIMD and GPU-aware implementation on Arm
 - Image quality evaluation
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that balance image quality, technical execution, and effective use of Arm platforms.
 
@@ -73,7 +75,7 @@ Your work should be clear enough for others to understand and test. Strong submi
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -82,7 +84,7 @@ These skills and resources are helpful before you begin:
 - Familiarity with CMake, Docker, C++, Python, and Vulkan
 - An interest in low-level optimization on Arm devices
 
-## Resources
+## 📚 Resources
 
 - Blog: [Neural camera denoising with Arm SME2](https://developer.arm.com/community/arm-community-blogs/b/ai-blog/posts/unlocking-the-power-of-neural-camera-denoising-with-arm-sme2)
 - Software: [Reference AI camera pipelines](https://gitlab.arm.com/kleidi/kleidi-examples/ai-camera-pipelines)

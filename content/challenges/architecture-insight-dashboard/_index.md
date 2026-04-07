@@ -22,7 +22,7 @@ multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Developers often need to choose the right Arm platform for an application, but device availability, operating system coverage, and architecture feature support can be hard to compare quickly. A challenge page gives you a place to explore an open-ended problem and build something useful for the Arm software community.
 
@@ -31,7 +31,7 @@ Developers often need to choose the right Arm platform for an application, but d
 In this challenge, you design a dashboard, like the one above, that shows how widely Arm architecture features are supported across devices, platforms, and software stacks. Think of it as an Arm-focused equivalent of a compatibility explorer such as Can I Use, but targeted at software developers who need to understand architecture support and optimization opportunities.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Create a dashboard that helps developers answer questions such as:
 
@@ -42,7 +42,7 @@ Create a dashboard that helps developers answer questions such as:
 
 Your implementation can use any language or framework. A web-based solution is a good fit because it lets you combine data collection, search, filtering, and visualization in one place.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Start with a small, useful slice of the problem. For example, you can:
 
@@ -51,7 +51,7 @@ Start with a small, useful slice of the problem. For example, you can:
 - Build a searchable index for libraries such as FFmpeg and show whether they expose Arm-specific acceleration paths
 - Visualize changes over time with charts or heatmaps
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 This challenge is a good fit if you want to improve in one or more of these areas:
 
@@ -61,7 +61,7 @@ This challenge is a good fit if you want to improve in one or more of these area
 - Arm software ecosystem research
 - API integration and data modeling
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect the usefulness of the dashboard, the quality of the data, and its value to developers working on Arm.
 
@@ -81,7 +81,7 @@ Your project should explain where the data comes from, how it is updated, and ho
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 You can choose your own implementation approach. These skills are helpful:
 
@@ -89,7 +89,7 @@ You can choose your own implementation approach. These skills are helpful:
 - Basic understanding of data structures and APIs
 - Access to a development system with internet connectivity
 
-## Resources
+## 📚 Resources
 
 - [Arm Software Ecosystem Dashboard](https://www.arm.com/developer-hub/ecosystem-dashboard)
 - [Windows on Arm support wiki](https://linaro.atlassian.net/wiki/spaces/WOAR/overview)

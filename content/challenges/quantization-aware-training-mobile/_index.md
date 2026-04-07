@@ -14,24 +14,26 @@ operatingsystems:
     - Android
     - Linux
     - macOS
+#challenge_deadline: "There is a short deadline of tomorrow so you can start and complete the challenge at your convenience."
+#challenge_prize: "Standout submissions can be featured on this website as formal recognition from Arm, giving you an achievement you can reference on LinkedIn and on your CV."
 challenge: true
 multi_challenge: false
 multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 Quantization-aware training helps preserve model accuracy while reducing model size and inference latency, which makes it especially useful for Arm-powered mobile devices. It is a practical way to build efficient on-device AI without sacrificing usability.
 
 In this challenge, you apply PyTorch quantization-aware training to computer vision models intended for Arm-based mobile deployment and publish the resulting artifacts for the wider community.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Train a model using a non-restrictively licensed dataset, apply quantization-aware training, and deploy the result to an Arm-powered mobile target such as an Android phone or emulator.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Consider real-time applications such as:
 
@@ -41,14 +43,14 @@ Consider real-time applications such as:
 
 The final quantized model should be suitable for sharing with the Hugging Face community and, where relevant, for inclusion in the Arm space on Hugging Face.
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 - Quantization-aware training
 - Model deployment on Arm mobile devices
 - Android integration for AI inference
 - Reproducible model publishing
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that balance model quality, deployability, and value for Arm-powered mobile systems.
 
@@ -68,7 +70,7 @@ Your work should be easy to understand, run, and evaluate. Strong submissions pr
 {{< /tabpane-normal >}}
 
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -77,7 +79,7 @@ These skills and resources are helpful before you begin:
 - Familiarity with Android Studio and mobile deployment
 - Access to an Arm-based Android device or emulator
 
-## Resources
+## 📚 Resources
 
 - Documentation: [Quantization in PyTorch](https://pytorch.org/docs/stable/quantization.html)
 - Blog: [Bring your AI model to Android devices](https://android-developers.googleblog.com/2024/10/bring-your-ai-model-to-android-devices.html)

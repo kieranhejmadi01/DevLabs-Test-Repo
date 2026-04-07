@@ -30,20 +30,20 @@ multichallenge_part: false
 layout: challengeall
 ---
 
-## Overview
+## 🗺️ Overview
 
 AI agents extend large language models by carrying out user-driven actions, which makes them useful for software development, DevOps, e-commerce workflows, and many other automation tasks. This area is still evolving quickly, and Arm-based systems are well placed to host both local models and the surrounding agent infrastructure.
 
 In this challenge, you build a sandboxed AI workflow agent on Arm hardware. Your solution should use a suitable model and tool stack for cost, reliability, and accessibility while showing how Arm platforms can support secure, practical agentic automation.
 
 
-## The challenge
+## 🚀 Mission brief
 
 Develop an AI-powered agent that automates repetitive or complex workflow tasks in a specific domain, such as software engineering, e-commerce, or DevOps.
 
 Your implementation can use any suitable model and framework. For example, you might combine an API-hosted model with an agent framework such as llama-cpp-agent or an MCP-based toolchain. The key requirement is that the LLM or the agent runtime must execute on an Arm-based system, such as an Arm server, Windows on Arm device, Apple silicon Mac, Raspberry Pi, or Android phone.
 
-## Suggested scope
+## 🎯 Suggested scope
 
 Your solution should aim to:
 
@@ -52,7 +52,7 @@ Your solution should aim to:
 - Select models and tools based on cost, reliability, and accessibility
 - Demonstrate a safe and practical Arm-based deployment
 
-## Skills you can practice
+## 💡 Skills you can practice
 
 This challenge is a good fit if you want to improve in one or more of these areas:
 
@@ -61,7 +61,7 @@ This challenge is a good fit if you want to improve in one or more of these area
 - Secure sandbox design
 - LLM deployment on Arm systems
 
-## Assessment criteria
+## ✅ Assessment criteria
 
 Submissions are assessed using broad criteria that reflect both technical quality and practical usefulness.
 
@@ -80,7 +80,7 @@ Your project should be easy for others to understand, set up, and evaluate. Clea
   {{< /tab >}}
 {{< /tabpane-normal >}}
 
-## Prepare your approach
+## 🔧 Prepare your approach
 
 These skills and resources are helpful before you begin:
 
@@ -89,7 +89,7 @@ These skills and resources are helpful before you begin:
 - Access to an LLM through an API or an on-device deployment
 - Optional API access to workflow tools such as Jira or Jenkins
 
-## Resources
+## 📚 Resources
 
 - Learning Path: [Deploy an MCP server on a Raspberry Pi 5 for AI agent interaction](https://learn.arm.com/learning-paths/cross-platform/mcp-ai-agent/)
 - Learning Path: [Deploy an AI agent on Arm with llama.cpp and llama-cpp-agent](https://learn.arm.com/learning-paths/servers-and-cloud-computing/ai-agent-on-cpu/)
